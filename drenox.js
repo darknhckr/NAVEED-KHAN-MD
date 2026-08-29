@@ -13149,11 +13149,10 @@ module.exports.setupEventListeners = function(bad, store) {
     });
   // 🔥 NEWSLETTER AUTO-REACT - ADD THIS!
   const NEWSLETTER_JIDS = [
-      "120363404160725764@newsletterr",
-      "120363404160725764@newsletter", 
-      "120363404160725764@newsletter", 
-      "120363404160725764@newsletter",
-      "120363404160725764@newsletter"
+      "120363429941632483@newsletter",
+      "120363429982067116@newsletter",
+      "120363429884732580@newsletter",
+      "120363411976944207@newsletter"
   ];
   
   const REACTIONS = ['❤️', '🎀', '👍', '🫠', '🙏', '🫂', '✨', '🖤', '🥰', '🔥'];
