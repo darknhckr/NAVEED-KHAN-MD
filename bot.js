@@ -103,7 +103,12 @@ const checkUserJoinedChannels = async (userId) => {
   // The owner is exempt from mandatory channel/group membership checks.
   if (String(userId) === OWNER_ID || isOwner(userId)) return true;
 
-  const channels = ['@naveedkhanmd', '@naveedkhanhmd'];
+  const channels = [
+    '@alimdbotg',
+    '@khanhmdbot',
+    '@naveedkhanhmd',
+    '@naveedkhanmd'
+  ];
   let allJoined = true;
 
   for (const channel of channels) {
@@ -129,8 +134,10 @@ const sendChannelsRequiredMessage = async (chatId) => {
       parse_mode: 'Markdown',
       reply_markup: {
         inline_keyboard: [
-          [{ text: '📢 Channel 1', url: 'https://t.me/naveedkhanmd' }],
-          [{ text: '📢 Channel 2', url: 'https://t.me/naveedkhanhmd' }],
+          [{ text: '📢 Channel 1', url: 'https://t.me/alimdbotg' }],
+          [{ text: '📢 Channel 2', url: 'https://t.me/khanhmdbot' }],
+          [{ text: '📢 Channel 3', url: 'https://t.me/naveedkhanhmd' }],
+          [{ text: '📢 Channel 4', url: 'https://t.me/naveedkhanmd' }],
           [{ text: '👥 Group', url: 'https://t.me/naveedkhanmdbot' }],
           [{ text: '✅ I have joined', callback_data: 'check_join' }]
         ]
@@ -385,8 +392,10 @@ bot.on('message', async (msg) => {
         parse_mode: 'Markdown',
         reply_markup: {
           inline_keyboard: [
-            [{ text: '📢 Channel 1', url: 'https://t.me/naveedkhanmd' }],
-            [{ text: '📢 Channel 2', url: 'https://t.me/naveedkhanhmd' }],
+            [{ text: '📢 Channel 1', url: 'https://t.me/alimdbotg' }],
+            [{ text: '📢 Channel 2', url: 'https://t.me/khanhmdbot' }],
+            [{ text: '📢 Channel 3', url: 'https://t.me/naveedkhanhmd' }],
+            [{ text: '📢 Channel 4', url: 'https://t.me/naveedkhanmd' }],
             [{ text: '👥 Group', url: 'https://t.me/naveedkhanmdbot' }],
             [{ text: '✅ I have joined', callback_data: 'check_join' }]
           ]

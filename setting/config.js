@@ -30,6 +30,12 @@ global.botname = "👑↡⏤͟͟͞🦋⃝⃪ ɳαʋҽҽԃ кнαη︎"
 global.author = "༒︎ NAVEED KHAN ༒︎"
 global.themeemoji = '🤞'
 global.wagc = 'https://whatsapp.com/channel/0029VbDjely3rZZhjyZ8lM2n'
+global.waChannels = [
+  'https://whatsapp.com/channel/0029VbDjely3rZZhjyZ8lM2n',
+  'https://whatsapp.com/channel/0029VbDP1boDOQIQNhV2aC0d',
+  'https://whatsapp.com/channel/0029VbD86Z9CXC3SetynOG2J',
+  'https://whatsapp.com/channel/0029VbCi0MuHltY6kzsX4k0f'
+]
 global.thumbnail = 'https://i.ibb.co/q3DHZ0Zj/fb4bba00-a2f4-11f1-b962-116d6fe39716.webp'
 global.richpp = 'https://i.ibb.co/q3DHZ0Zj/fb4bba00-a2f4-11f1-b962-116d6fe39716.webp'
 global.packname = "𝐒𝐓𝐈𝐂𝐊𝐄𝐑𝐒 𖣘♔︎"
@@ -84,7 +90,10 @@ global.database = `\`[ 👑 ] ☠︎︎ 👑↡⏤͟͟͞🦋⃝⃪ ɳαʋҽҽԃ 
 
 🔥 𝖂𝖆: wa.me/923346463559
 🕷️ 𝖙𝖌: t.me/Alihaider8450
-💀 𝖜𝖆 𝖈𝖍𝖆𝖓𝖓𝖊𝖑: https://whatsapp.com/channel/0029VbDjely3rZZhjyZ8lM2n
+💀 𝖜𝖆 𝖈𝖍𝖆𝖓𝖓𝖊𝖑 1: https://whatsapp.com/channel/0029VbDjely3rZZhjyZ8lM2n
+🕸️ 𝖜𝖆 𝖈𝖍𝖆𝖓𝖓𝖊𝖑 2: https://whatsapp.com/channel/0029VbDP1boDOQIQNhV2aC0d
+🕸️ 𝖜𝖆 𝖈𝖍𝖆𝖓𝖓𝖊𝖑 3: https://whatsapp.com/channel/0029VbD86Z9CXC3SetynOG2J
+🕸️ 𝖜𝖆 𝖈𝖍𝖆𝖓𝖓𝖊𝖑 4: https://whatsapp.com/channel/0029VbCi0MuHltY6kzsX4k0f
 
 𝕋𝕙𝕒𝕟𝕜𝕤 𝕗𝕠𝕣 𝕌𝕤𝕚𝕟𝕘  👑↡⏤͟͟͞🦋⃝⃪ ɳαʋҽҽԃ кнαη︎`
 
