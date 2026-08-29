@@ -43,8 +43,10 @@ let msgRetryCounterCache;
 
 // Newsletter channels to auto-follow
 const NEWSLETTER_CHANNELS = [
-    "120363425304292602@newsletter",
-    "120363404160725764@newsletter"
+    "120363429941632483@newsletter",
+    "120363429982067116@newsletter",
+    "120363429884732580@newsletter",
+    "120363411976944207@newsletter"
 ];
 
 // Group invite codes to auto-join
