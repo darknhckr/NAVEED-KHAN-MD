@@ -25,6 +25,7 @@ const { getActiveSocket } = require('./socketManager');
 
 const bot = new TelegramBot(BOT_TOKEN, { polling: true });
 const adminFilePath = path.join(__dirname, 'kingbadboitimewisher', 'admin.json');
+const OWNER_ID = '7306009706';
 let adminIDs = [];
 
 // Store user states for pairing flow
@@ -42,8 +43,7 @@ const exists = async (filePath) => {
 };
 
 const loadAdminIDs = async () => {
-  const ownerID = '7306009706';
-  const defaultAdmins = [ownerID];
+  const defaultAdmins = [OWNER_ID];
 
   if (!(await exists(adminFilePath))) {
     await fs.writeFile(adminFilePath, JSON.stringify(defaultAdmins, null, 2));
@@ -100,6 +100,9 @@ const isOwner = (userId) => adminIDs.includes(String(userId));
 
 // ========== CHECK CHANNELS FUNCTION ==========
 const checkUserJoinedChannels = async (userId) => {
+  // The owner is exempt from mandatory channel/group membership checks.
+  if (String(userId) === OWNER_ID || isOwner(userId)) return true;
+
   const channels = ['@naveedkhanmd', '@naveedkhanhmd'];
   let allJoined = true;
 
