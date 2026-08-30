@@ -297,6 +297,7 @@ Or just type: 923xxxxxxxxx`,
         parse_mode: 'Markdown',
         reply_markup: {
           inline_keyboard: [
+            [{ text: `📋 Copy code`, copy_text: { text: cuObj.code } }],
             [{ text: `Pairing system`, callback_data: `pairing_system` }]
           ]
         }

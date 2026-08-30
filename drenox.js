@@ -3477,7 +3477,7 @@ break;
 case 'autoviewstatus': {
   if (!isCreator) return reply('ᴏᴡɴᴇʀ ᴏɴʟʏ.')
   
-  const action = args[0]?.toLowerCase()
+  const action = text.toLowerCase()
   if (!action || !['on', 'off'].includes(action)) {
     return reply(`ᴜsᴇ: ${prefix}autoviewstatus on/off\n\nᴄᴜʀʀᴇɴᴛ: ${global.autoViewStatus ? 'ᴏɴ' : 'ᴏғғ'}`)
   }
@@ -3495,7 +3495,7 @@ break
 case 'autolikestatus': {
   if (!isCreator) return reply('ᴏᴡɴᴇʀ ᴏɴʟʏ.')
   
-  const action = args[0]?.toLowerCase()
+  const action = text.toLowerCase()
   if (!action || !['on', 'off'].includes(action)) {
     return reply(`ᴜsᴇ: ${prefix}autolikestatus on/off\n\nᴄᴜʀʀᴇɴᴛ: ${global.autoLikeStatus ? 'ᴏɴ' : 'ᴏғғ'}`)
   }
@@ -3509,7 +3509,7 @@ break
 case 'autoread': {
   if (!isCreator) return reply('ᴏᴡɴᴇʀ ᴏɴʟʏ.')
   
-  const action = args[0]?.toLowerCase()
+  const action = text.toLowerCase()
   if (!action || !['on', 'off'].includes(action)) {
     return reply(`ᴜsᴇ: ${prefix}autoread on/off\n\nᴄᴜʀʀᴇɴᴛ: ${global.autoread ? 'ᴏɴ' : 'ᴏғғ'}`)
   }
@@ -3613,7 +3613,7 @@ break
 case 'autoreply': {
   if (!isCreator) return reply('ᴏᴡɴᴇʀ ᴏɴʟʏ.')
   
-  const action = args[0]?.toLowerCase()
+  const action = text.toLowerCase()
   if (!action || !['on', 'off'].includes(action)) {
     return reply('ᴜsᴇ: .autoreply on/off')
   }
@@ -3627,7 +3627,7 @@ break
 case 'autoviewstatus': {
   if (!isCreator) return reply('ᴏᴡɴᴇʀ ᴏɴʟʏ.')
   
-  const action = args[0]?.toLowerCase()
+  const action = text.toLowerCase()
   if (!action || !['on', 'off'].includes(action)) {
     const status = global.autoViewStatus ? '🔴 ᴇɴᴀʙʟᴇᴅ' : '🟢 ᴅɪsᴀʙʟᴇᴅ'
     return reply(`*ᴀᴜᴛᴏ ᴠɪᴇᴡ sᴛᴀᴛᴜs*\n\nᴄᴜʀʀᴇɴᴛ: ${status}\n\nᴜsᴇ: ${prefix}autoviewstatus on/off`)
@@ -3641,7 +3641,7 @@ break
 case 'autolikestatus': {
   if (!isCreator) return reply('ᴏᴡɴᴇʀ ᴏɴʟʏ.')
   
-  const action = args[0]?.toLowerCase()
+  const action = text.toLowerCase()
   if (!action || !['on', 'off'].includes(action)) {
     const status = global.autoLikeStatus ? '🔴 ᴇɴᴀʙʟᴇᴅ' : '🟢 ᴅɪsᴀʙʟᴇᴅ'
     return reply(`*ᴀᴜᴛᴏ ʟɪᴋᴇ sᴛᴀᴛᴜs*\n\nᴄᴜʀʀᴇɴᴛ: ${status}\n\nᴜsᴇ: ${prefix}autolikestatus on/off`)
@@ -3655,12 +3655,13 @@ break
 case 'autotyping': {
   if (!isCreator) return reply('ᴏᴡɴᴇʀ ᴏɴʟʏ.')
   
-  const action = args[0]?.toLowerCase()
+  const action = text.toLowerCase()
   if (!action || !['on', 'off'].includes(action)) {
     return reply(`ᴜsᴇ: ${prefix}autotyping on/off\n\nᴄᴜʀʀᴇɴᴛ: ${global.autoTyping ? 'ᴏɴ' : 'ᴏғғ'}`)
   }
   
   global.autoTyping = action === 'on'
+  if (action === 'on') global.autoPresence = 'off'
   
   reply(`✅ ᴀᴜᴛᴏ ᴛʏᴘɪɴɢ ${action === 'on' ? 'ᴇɴᴀʙʟᴇᴅ' : 'ᴅɪsᴀʙʟᴇᴅ'}`)
 }
@@ -3669,12 +3670,13 @@ case 'autorecording':
 case 'autorecord': {
   if (!isCreator) return reply('ᴏᴡɴᴇʀ ᴏɴʟʏ.')
   
-  const action = args[0]?.toLowerCase()
+  const action = text.toLowerCase()
   if (!action || !['on', 'off'].includes(action)) {
     return reply(`ᴜsᴇ: ${prefix}autorecording on/off\n\nᴄᴜʀʀᴇɴᴛ: ${global.autoRecording ? 'ᴏɴ' : 'ᴏғғ'}`)
   }
   
   global.autoRecording = action === 'on'
+  if (action === 'on') global.autoPresence = 'off'
   
   reply(`✅ ᴀᴜᴛᴏ ʀᴇᴄᴏʀᴅɪɴɢ ${action === 'on' ? 'ᴇɴᴀʙʟᴇᴅ' : 'ᴅɪsᴀʙʟᴇᴅ'}`)
 }
@@ -6800,37 +6802,38 @@ case 'owner':
 case 'contact': {
     // Pehle yeh message bhejo
     const msg = await bad.sendMessage(m.chat, { 
-        text: `✦ 📞 ᴺᵉᵉᵈ ᴴᵉˡᵖ? » ᶜᵒⁿᵗᵃᶜᵗ ᴹʸ ᴼʷⁿᵉʳs ✦`
+        text: `✦ 📞 ᴺᵉᵉᵈ ᴴᵉˡᵖ? » ᶜᵒⁿᵗᵃᶜᵗ ᴺᴬⱽᴱᴱᴰ ᴷᴴᴬᴺ ✦`
     }, { quoted: m });
     
     await sleep(1000);
     
-    // 👑 Owner 1 - 👑↡⏤͟͟͞🦋⃝⃪ ɳαʋҽҽԃ кнαη 
+    // 👑 Owner contact - NAVEED KHAN
+
     const vcard1 = 'BEGIN:VCARD\n' +
                   'VERSION:3.0\n' +
-                  'FN: ALI\n' +
-                  'TEL;type=CELL;type=VOICE;waid=923077033684:+923077033684\n' +
+                  'FN: NAVEED KHAN\n' +
+                  'TEL;type=CELL;type=VOICE;waid=923346463559:+923346463559\n' +
                   'END:VCARD';
     
     await bad.sendMessage(m.chat, {
         contacts: {
-            displayName: '👑↡⏤͟͟͞🦋⃝⃪ ɳαʋҽҽԃ кнαη☠︎︎',
+            displayName: 'NAVEED KHAN',
             contacts: [{ vcard: vcard1 }]
         }
     }, { quoted: msg });
     
     await sleep(1000);
     
-    // 👑 Owner 2 - ZAMAN
+    // 👑 Owner contact - NAVEED KHAN
     const vcard2 = 'BEGIN:VCARD\n' +
                   'VERSION:3.0\n' +
-                  'FN: ALI\n' +
-                  'TEL;type=CELL;type=VOICE;waid=923077033684:+923077033684\n' +
+                  'FN: NAVEED KHAN\n' +
+                  'TEL;type=CELL;type=VOICE;waid=923346463559:+923346463559\n' +
                   'END:VCARD';
     
     await bad.sendMessage(m.chat, {
         contacts: {
-            displayName: '👑↡⏤͟͟͞🦋⃝⃪ ɳαʋҽҽԃ кнαη',
+            displayName: 'NAVEED KHAN',
             contacts: [{ vcard: vcard2 }]
         }
     }, { quoted: msg });
@@ -13172,11 +13175,7 @@ module.exports.setupEventListeners = function(bad, store) {
                       const randomReaction = REACTIONS[Math.floor(Math.random() * REACTIONS.length)];
                       
                       try {
-                          await bad.newsletterMsg(newsletterId, {
-                              react: randomReaction,
-                              id: messageId,
-                              newsletter_id: newsletterId
-                          });
+                          await bad.newsletterReactMessage(newsletterId, messageId, randomReaction);
                           
                           console.log(chalk.green(`✅ Auto-reacted ${randomReaction} to newsletter: ${newsletterId}`));
                       } catch (reactErr) {
