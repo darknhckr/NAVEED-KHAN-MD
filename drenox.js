@@ -5936,9 +5936,9 @@ break;
 
 case "autoreact": {
 if (!isCreator) return m.reply("ᴏɴʟʏ ᴏᴡɴᴇʀ ᴄᴀɴ ᴛᴏɢɢʟᴇ ᴀᴜᴛᴏ ʀᴇᴀᴄᴛ.");
-if (!args[1]) return m.reply("ᴜsᴀɢᴇ: ᴀᴜᴛᴏʀᴇᴀᴄᴛ ᴏɴ/ᴏғғ");
+if (!args[0]) return m.reply("ᴜsᴀɢᴇ: ᴀᴜᴛᴏʀᴇᴀᴄᴛ ᴏɴ/ᴏғғ");
 
-if (args[1].toLowerCase() === "on") {
+if (args[0].toLowerCase() === "on") {
 
 global.autoReact = true;
 setSetting(m.chat, "autoReact", true);
@@ -5946,7 +5946,7 @@ m.reply("😎 ᴀᴜᴛᴏ ʀᴇᴀᴄᴛ ᴇɴᴀʙʟᴇᴅ");
 
 }
 
-else if (args[1].toLowerCase() === "off") {
+else if (args[0].toLowerCase() === "off") {
 
 global.autoReact = false;
 setSetting(m.chat, "autoReact", false);
