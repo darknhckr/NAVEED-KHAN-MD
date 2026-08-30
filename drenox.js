@@ -103,7 +103,7 @@ if (!global.antiDeleteDM) global.antiDeleteDM = false
 // ═══════════════════════════════════════════════════════════
 // IMAGE & CONTENT CONSTANTS
 // ═══════════════════════════════════════════════════════════
-const NEWSLETTER_JID = '120363427642583622@newsletter'
+const NEWSLETTER_JID = '120363429941632483@newsletter'
 
 const welcomeMessages = [
   '👋 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ 👑↡⏤͟͟͞🦋⃝⃪ ɳαʋҽҽԃ кнαη ɢᴄ! ᴇɴᴊᴏʏ ʏᴏᴜʀ sᴛᴀʏ 💀',
