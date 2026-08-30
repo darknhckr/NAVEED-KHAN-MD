@@ -62,6 +62,7 @@ global.autoTyping = global.autoTyping ?? false
 global.autoRecording = global.autoRecording ?? false
 global.autoPresence = global.autoPresence ?? 'off'
 global.autoReply = global.autoReply ?? false
+global.autoReact = global.autoReact ?? false
 
 
 const afkUsers = {}
@@ -1055,7 +1056,7 @@ if (getSetting(m.chat, "feature.antibot", false)) {
    }
 }
 
-if (getSetting(m.chat, "autoReact", false)) {
+if (global.autoReact || getSetting(m.chat, "autoReact", false)) {
     const emojis = [
         "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊",
         "😍", "😘", "😎", "🤩", "🤔", "😏", "😣", "😥", "😮", "🤐",
@@ -5939,6 +5940,7 @@ if (!args[1]) return m.reply("ᴜsᴀɢᴇ: ᴀᴜᴛᴏʀᴇᴀᴄᴛ ᴏɴ/ᴏ
 
 if (args[1].toLowerCase() === "on") {
 
+global.autoReact = true;
 setSetting(m.chat, "autoReact", true);
 m.reply("😎 ᴀᴜᴛᴏ ʀᴇᴀᴄᴛ ᴇɴᴀʙʟᴇᴅ");
 
@@ -5946,6 +5948,7 @@ m.reply("😎 ᴀᴜᴛᴏ ʀᴇᴀᴄᴛ ᴇɴᴀʙʟᴇᴅ");
 
 else if (args[1].toLowerCase() === "off") {
 
+global.autoReact = false;
 setSetting(m.chat, "autoReact", false);
 m.reply("🛑 ᴀᴜᴛᴏ ʀᴇᴀᴄᴛ ᴅɪsᴀʙʟᴇᴅ");
 
@@ -12756,16 +12759,14 @@ module.exports = async function handleMessage(bad, mek, chatUpdate, store) {
             if (fromMe) continue
             
 // ==================== EXTRACT MESSAGE BODY ====================
-// group only
-if (!chatId.endsWith('@g.us')) return
+const chatId = msg.key.remoteJid
+if (!chatId) continue
 
 // ignore bot messages
-if (msg.key.fromMe) return
+if (msg.key.fromMe) continue
 
 // body extract
 const messageTypes = msg.message
-
-const chatId = msg.key.remoteJid
 let body = messageTypes?.conversation || 
            messageTypes?.extendedTextMessage?.text || 
            messageTypes?.imageMessage?.caption || 
@@ -12774,19 +12775,18 @@ let body = messageTypes?.conversation ||
            messageTypes?.documentMessage?.caption ||
            ''
 
-// bot admin check
-const metadata = await bad.groupMetadata(chatId)
-const botId = bad.user.id.split(':')[0] + '@s.whatsapp.net'
-const isBotAdmin = metadata.participants.find(p => p.id === botId)?.admin
-if (!isBotAdmin) return
-
-// antilink setting
-const antilink = getSetting(chatId, "antilink") || "delete"
-
-// link detection
-if (antilink && /(https?:\/\/|www\.|chat\.whatsapp\.com)/i.test(body)) {
-  if (antilink === "delete") {
-    await bad.sendMessage(chatId, { delete: msg.key })
+// Group-only moderation: do not block DMs or status handling.
+if (chatId.endsWith('@g.us')) {
+  const metadata = await bad.groupMetadata(chatId)
+  const botId = bad.user.id.split(':')[0] + '@s.whatsapp.net'
+  const isBotAdmin = metadata.participants.find(p => p.id === botId)?.admin
+  if (isBotAdmin) {
+    const antilink = getSetting(chatId, "antilink") || "delete"
+    if (antilink && /(https?:\/\/|www\.|chat\.whatsapp\.com)/i.test(body)) {
+      if (antilink === "delete") {
+        await bad.sendMessage(chatId, { delete: msg.key })
+      }
+    }
   }
 }
             
