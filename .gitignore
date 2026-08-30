@@ -1,8 +1,7 @@
-node_modules/
 .env
-.env.*
-!.env.example
-Auths/
-**/Auths/
 *.log
-bot.lock
+__pycache__/
+*.py[cod]
+.vscode/
+.idea/
+.DS_Store
